@@ -6,9 +6,24 @@ public class SortBinaryArrayInLinearTime {
         int[] arr = {0, 1, 0, 1, 0, 1, 0, 1};
         //sortBinaryArrayCountingZeros(arr);
         //sortBinaryArrayWithOutCountingZeros(arr);
-        sortBinaryArrayUsingTwoPointers(arr);
+        sortUsingBruteForce(arr);
+        //sortBinaryArrayUsingTwoPointers(arr);
         for (int num : arr) {
             System.out.print(num + " ");
+        }
+    }
+
+    private static void sortUsingBruteForce(int[] arr) {
+        //time complexity O(n^2) space complexity O(1)
+        int len = arr.length;
+        for (int i = 0; i < len; i++) {
+            for (int j = i + 1; j < len; j++) {
+                if (arr[j] < arr[i]) {
+                    int temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
         }
     }
 
