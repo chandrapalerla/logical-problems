@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class Pattern3 {
 
-	public static void main(String[] args) {
+	static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("ENter number of rows");
