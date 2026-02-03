@@ -1,4 +1,4 @@
 module logicalproblems {
-    requires datastructures;
+    requires java.xml.crypto;
 }
 
