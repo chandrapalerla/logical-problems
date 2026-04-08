@@ -4,8 +4,6 @@ public class StringSlipt {
 
 	public static void main(String[] args) {
 		
-		
-		
 		String s1 = "|chandr|ashekar";
 		
 		char [] tochar = s1.toCharArray();
@@ -26,5 +24,4 @@ public class StringSlipt {
 		System.out.println(s2);
 
 	}
-
 }
