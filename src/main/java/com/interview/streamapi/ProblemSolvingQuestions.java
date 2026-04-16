@@ -1,17 +1,17 @@
 package com.interview.streamapi;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import com.hackerrank.A;
+
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class problemSolvingQuestions {
+public class ProblemSolvingQuestions {
     void main() {
 
         // Sort the array based on highest frequency
-        int[] arr = new int[]{1,2,2,3,4,4,5,5,5};
+        int[] arr = new int[]{1, 2, 2, 3, 4, 4, 5, 5, 5};
         Arrays.stream(arr)
                 .boxed()
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()))
@@ -24,10 +24,10 @@ public class problemSolvingQuestions {
                     }
                 });
 
-  // Return a new array that has unique values that doesn't has value 'c' using java 8.
-        String[][] stAr = new String[][]{{"a","b","c"},{"c","a","b","d"},{"a","b","e","f"}};
+        // Return a new array that has unique values that doesn't has value 'c' using java 8.
+        String[][] stAr = new String[][]{{"a", "b", "c"}, {"c", "a", "b", "d"}, {"a", "b", "e", "f"}};
         Set<String> collect = Arrays.stream(stAr)
-                .flatMap(s -> Arrays.stream(s).filter(c-> !Objects.equals(c, "c")).distinct())
+                .flatMap(s -> Arrays.stream(s).filter(c -> !Objects.equals(c, "c")).distinct())
                 .collect(Collectors.toSet());
         System.out.println(collect);
 
@@ -41,55 +41,74 @@ public class problemSolvingQuestions {
         String characters = partitioned.get(false);
         System.out.println("Digits: " + digits);
         System.out.println("Characters: " + characters);
+
+        //1. **Separate odd and even numbers in a list of integers**
+        //Given a list of integers, write a Java 8 program to separate the odd and even numbers into two separate lists.
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Map<Boolean, List<Integer>> collect1 = numbers.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+        System.out.println(collect1);
+
+       // 2. **Remove duplicate elements from a list using Java 8 streams**
+        List<Integer> removeDuplicate = List.of(1, 2, 3, 4, 5, 6, 7, 4,5,6,7,8,9,8, 9, 10);
+        List<Integer> list = removeDuplicate.stream().distinct().toList();
+        System.out.println(list);
+
+        //3. **Find the frequency of each element in an array or a list**
+        List<Integer> frequencyElements = List.of(1, 2, 3,6,4,5,8,9, 4, 5, 6, 7, 4,5,6,7,8,9,8, 9, 10);
+
+        Map<Integer, Long> frequencyElements1 = frequencyElements.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(frequencyElements1);
+
+       // **Find the frequency of each character in a string using Java 8 streams**
+        String name = "chandrashekar";
+        char[] charArray = name.toCharArray();
+        Map<String, Long> collect2 = Arrays.stream(name.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(collect2);
+
+        //5. **Sort a given list of decimals in reverse order**
+        List<Integer> reverseOrder = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> sorted = reverseOrder.stream().sorted(Comparator.reverseOrder()).toList();
+        System.out.println(sorted);
+
+       // 6. **Join a list of strings with '[' as prefix, ']' as suffix, and ',' as delimiter**
+
+        List<String> names = List.of("rock,ram,mike,onac,mikalai,pavel,hanna");
+        String collect3 = names.stream().map(str -> "as prefix " + str + " as suffix").collect(Collectors.joining("."));
+        System.out.println(collect3);
+
+        //7. **Print the numbers from a given list of integers that are multiples of 5**
+        List<Integer> multiplyOf5 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> list1 = multiplyOf5.stream().map(num -> num * 5).toList();
+        System.out.println(list1);
+
+        //8. **Find the maximum and minimum of a list of integers**
+        List<Integer> maxAndMin = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        IntSummaryStatistics collect4 = maxAndMin.stream().collect(Collectors.summarizingInt(Integer::intValue));
+        System.out.println(collect4.getMax());
+        System.out.println(collect4.getMin());
+
+        // 9. **Merge two unsorted arrays into a single sorted array using Java 8 streams**
+
+        int a[] = {2,3,5,6,5,6,7};
+        int a1[] = {1,4,3,6,5,8,9,10};
+        IntStream.concat(Arrays.stream(a), Arrays.stream(a1))
+                .boxed()
+                .collect(Collectors.groupingBy(e -> e, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.<Integer, Long>comparingByValue().reversed())
+                .forEach(entry -> {
+                    for (int i = 0; i < entry.getValue(); i++) {
+                        System.out.print(entry.getKey() + " ");
+                    }
+                });
+
+        //10. **Merge two unsorted arrays into a single sorted array without duplicates**
+        int[] array = IntStream.concat(Arrays.stream(a), Arrays.stream(a1)).distinct().toArray();
+        System.out.println(Arrays.toString(array));
+
     }
 }
-
-
-//# Java 8 Interview Sample Coding Questions.
-//
-//This repository contains sample Java 8 coding questions that can be used for interview preparation. Each question focuses on a specific programming concept or problem-solving technique using Java 8 features.
-//
-//## List of Questions
-//
-//1. **Separate odd and even numbers in a list of integers**
-//
-//Given a list of integers, write a Java 8 program to separate the odd and even numbers into two separate lists.
-//
-//        2. **Remove duplicate elements from a list using Java 8 streams**
-//
-//Write a Java 8 program to remove duplicate elements from a list using the stream API and lambda expressions.
-//
-//3. **Find the frequency of each character in a string using Java 8 streams**
-//
-//Write a Java 8 program to find the frequency of each character in a given string using the stream API and collectors.
-//
-//        4. **Find the frequency of each element in an array or a list**
-//
-//Write a Java 8 program to find the frequency of each element in an array or a list using streams and collectors.
-//
-//        5. **Sort a given list of decimals in reverse order**
-//
-//Write a Java 8 program to sort a given list of decimal numbers in reverse order.
-//
-//        6. **Join a list of strings with '[' as prefix, ']' as suffix, and ',' as delimiter**
-//
-//Given a list of strings, write a Java 8 program to join the strings with '[' as a prefix, ']' as a suffix, and ',' as a delimiter.
-//
-//7. **Print the numbers from a given list of integers that are multiples of 5**
-//
-//Write a Java 8 program to print the numbers from a given list of integers that are multiples of 5.
-//
-//        8. **Find the maximum and minimum of a list of integers**
-//
-//Given a list of integers, write a Java 8 program to find the maximum and minimum numbers in the list.
-//
-//9. **Merge two unsorted arrays into a single sorted array using Java 8 streams**
-//
-//Write a Java 8 program to merge two unsorted arrays into a single sorted array using the stream API.
-//
-//10. **Merge two unsorted arrays into a single sorted array without duplicates**
-//
-//Write a Java 8 program to merge two unsorted arrays into a single sorted array without duplicates.
 //11. **Get the three maximum and three minimum numbers from a given list of integers**
 //
 //Write a Java 8 program to get the three maximum and three minimum numbers from a given list of integers.

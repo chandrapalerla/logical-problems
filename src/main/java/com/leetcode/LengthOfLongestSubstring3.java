@@ -24,7 +24,7 @@ public class LengthOfLongestSubstring3 {
                 left = Math.max(left,map.get(ch)+1);
                 map.put(ch, right);
             }
-            ans = Math.max(ans, right - left + 1);
+           ans = Math.max(ans, right-left+1);
 
         }
         return ans;
