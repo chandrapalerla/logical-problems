@@ -1,7 +1,5 @@
 package com.interview.streamapi;
 
-import com.hackerrank.A;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -48,18 +46,18 @@ public class ProblemSolvingQuestions {
         Map<Boolean, List<Integer>> collect1 = numbers.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
         System.out.println(collect1);
 
-       // 2. **Remove duplicate elements from a list using Java 8 streams**
-        List<Integer> removeDuplicate = List.of(1, 2, 3, 4, 5, 6, 7, 4,5,6,7,8,9,8, 9, 10);
+        // 2. **Remove duplicate elements from a list using Java 8 streams**
+        List<Integer> removeDuplicate = List.of(1, 2, 3, 4, 5, 6, 7, 4, 5, 6, 7, 8, 9, 8, 9, 10);
         List<Integer> list = removeDuplicate.stream().distinct().toList();
         System.out.println(list);
 
         //3. **Find the frequency of each element in an array or a list**
-        List<Integer> frequencyElements = List.of(1, 2, 3,6,4,5,8,9, 4, 5, 6, 7, 4,5,6,7,8,9,8, 9, 10);
+        List<Integer> frequencyElements = List.of(1, 2, 3, 6, 4, 5, 8, 9, 4, 5, 6, 7, 4, 5, 6, 7, 8, 9, 8, 9, 10);
 
         Map<Integer, Long> frequencyElements1 = frequencyElements.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         System.out.println(frequencyElements1);
 
-       // **Find the frequency of each character in a string using Java 8 streams**
+        // **Find the frequency of each character in a string using Java 8 streams**
         String name = "chandrashekar";
         char[] charArray = name.toCharArray();
         Map<String, Long> collect2 = Arrays.stream(name.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -70,7 +68,7 @@ public class ProblemSolvingQuestions {
         List<Integer> sorted = reverseOrder.stream().sorted(Comparator.reverseOrder()).toList();
         System.out.println(sorted);
 
-       // 6. **Join a list of strings with '[' as prefix, ']' as suffix, and ',' as delimiter**
+        // 6. **Join a list of strings with '[' as prefix, ']' as suffix, and ',' as delimiter**
 
         List<String> names = List.of("rock,ram,mike,onac,mikalai,pavel,hanna");
         String collect3 = names.stream().map(str -> "as prefix " + str + " as suffix").collect(Collectors.joining("."));
@@ -87,10 +85,10 @@ public class ProblemSolvingQuestions {
         System.out.println(collect4.getMax());
         System.out.println(collect4.getMin());
 
-        // 9. **Merge two unsorted arrays into a single sorted array using Java 8 streams**
+        // 9. **Merge two unsorted arrays into a single sorted array  and sort based on frequency using Java 8 streams*
 
-        int a[] = {2,3,5,6,5,6,7};
-        int a1[] = {1,4,3,6,5,8,9,10};
+        int a[] = {2, 3, 5, 6, 5, 6, 7};
+        int a1[] = {1, 4, 3, 6, 5, 8, 9, 10};
         IntStream.concat(Arrays.stream(a), Arrays.stream(a1))
                 .boxed()
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()))
