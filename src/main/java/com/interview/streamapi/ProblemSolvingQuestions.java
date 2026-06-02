@@ -88,8 +88,8 @@ public class ProblemSolvingQuestions {
 
         // 9. **Merge two unsorted arrays into a single sorted array  and sort based on frequency using Java 8 streams*
 
-        int a[] = {2, 3, 5, 6, 5, 6, 7};
-        int a1[] = {1, 4, 3, 6, 5, 8, 9, 10};
+        int[] a = {2, 3, 5, 6, 5, 6, 7};
+        int[] a1 = {1, 4, 3, 6, 5, 8, 9, 10};
         IntStream.concat(Arrays.stream(a), Arrays.stream(a1))
                 .boxed()
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()))
@@ -105,13 +105,12 @@ public class ProblemSolvingQuestions {
         //10. **Merge two unsorted arrays into a single sorted array without duplicates**
         int[] array = IntStream.concat(Arrays.stream(a), Arrays.stream(a1)).distinct().toArray();
         System.out.println(Arrays.toString(array));
-
     }
 }
-//11. **Get the three maximum and three minimum numbers from a given list of integers**
-//
-//Write a Java 8 program to get the three maximum and three minimum numbers from a given list of integers.
-//
+
+
+
+
 //        12. **Check if two strings are anagrams or not using Java 8 streams**
 //
 //Write a Java 8 program to check if two strings are anagrams or not using the stream API and lambda expressions.
